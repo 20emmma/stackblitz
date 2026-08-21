@@ -1,9 +1,32 @@
-export const dynamic = "force-dynamic";
+"use client";
 
-import { getCompanies } from "@/lib/wordpress";
+import { useEffect, useState } from "react";
 
-export default async function WordPressTestPage() {
-  const companies = await getCompanies();
+export default function WordPressTestPage() {
+  const [status, setStatus] = useState("Testing...");
+  const [data, setData] = useState<unknown>(null);
+
+  useEffect(() => {
+    fetch(
+      "https://neweragroup.rf.gd/wp-json/wp/v2/companies"
+    )
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error(
+            `HTTP ${response.status}`
+          );
+        }
+
+        return response.json();
+      })
+      .then((result) => {
+        setData(result);
+        setStatus("SUCCESS");
+      })
+      .catch((error) => {
+        setStatus(`FAILED: ${error.message}`);
+      });
+  }, []);
 
   return (
     <main className="min-h-screen p-10">
@@ -11,9 +34,15 @@ export default async function WordPressTestPage() {
         WordPress Connection Test
       </h1>
 
-      <pre className="mt-8 whitespace-pre-wrap rounded-lg bg-gray-100 p-6">
-        {JSON.stringify(companies, null, 2)}
-      </pre>
+      <p className="mt-6">
+        Status: {status}
+      </p>
+
+      {data && (
+        <pre className="mt-6 overflow-auto rounded-lg bg-gray-100 p-6">
+          {JSON.stringify(data, null, 2)}
+        </pre>
+      )}
     </main>
   );
-}
+      }
