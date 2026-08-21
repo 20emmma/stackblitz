@@ -7,22 +7,34 @@ import Footer from '@/components/layout/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Neweraplus Group of Companies',
-  description: 'Neweraplus Group of Companies delivers innovative, reliable and sustainable solutions across engineering, oil & gas, healthcare and construction.',
+  title: "Neweraplus Group of Companies",
+  description:
+    "Neweraplus Group of Companies — Engineering, Oil & Gas, Healthcare and Construction.",
+
   openGraph: {
+    title: "Neweraplus Group of Companies",
+    description:
+      "Engineering, Oil & Gas, Healthcare and Construction solutions.",
+    url: "https://www.neweraplusgroup.com",
+    siteName: "Neweraplus Group of Companies",
     images: [
       {
-        url: 'https://bolt.new/static/og_default.png',
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Neweraplus Group of Companies",
       },
     ],
+    locale: "en_NG",
+    type: "website",
   },
+
   twitter: {
-    card: 'summary_large_image',
-    images: [
-      {
-        url: 'https://bolt.new/static/og_default.png',
-      },
-    ],
+    card: "summary_large_image",
+    title: "Neweraplus Group of Companies",
+    description:
+      "Engineering, Oil & Gas, Healthcare and Construction solutions.",
+    images: ["/og-image.jpg"],
   },
 };
 
