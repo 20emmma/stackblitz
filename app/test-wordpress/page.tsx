@@ -8,7 +8,7 @@ export default function WordPressTestPage() {
 
   useEffect(() => {
     fetch(
-      "https://neweragroup.rf.gd/wp-json/wp/v2/companies"
+      "https://neweragroup.rf.gd/wp-json/wp/v2/companies?per_page=1"
     )
       .then(async (response) => {
         if (!response.ok) {
