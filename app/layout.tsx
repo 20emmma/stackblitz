@@ -6,16 +6,20 @@ import Footer from '@/components/layout/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
+import type { Metadata } from "next";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://stackblitz-xi.vercel.app"),
+
   title: "Neweraplus Group of Companies",
   description:
-    "Neweraplus Group of Companies — Engineering, Oil & Gas, Healthcare and Construction.",
+    "Innovative solutions across Engineering, Oil & Gas, Healthcare and Construction.",
 
   openGraph: {
     title: "Neweraplus Group of Companies",
     description:
-      "Engineering, Oil & Gas, Healthcare and Construction solutions.",
-    url: "https://www.neweraplusgroup.com",
+      "Innovative solutions across Engineering, Oil & Gas, Healthcare and Construction.",
+    url: "https://stackblitz-xi.vercel.app/",
     siteName: "Neweraplus Group of Companies",
     images: [
       {
@@ -33,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Neweraplus Group of Companies",
     description:
-      "Engineering, Oil & Gas, Healthcare and Construction solutions.",
+      "Innovative solutions across Engineering, Oil & Gas, Healthcare and Construction.",
     images: ["/og-image.jpg"],
   },
 };
