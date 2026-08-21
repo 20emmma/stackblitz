@@ -26,14 +26,34 @@ export interface WordPressCompany {
 }
 
 export async function getCompanies(): Promise<WordPressCompany[]> {
-  const response = await fetch(`${WORDPRESS_API_URL}/companies`, {
-    next: {
-      revalidate: 60,
-    },
-  });
+  const response = await fetch(
+    `${WORDPRESS_API_URL}/companies`,
+    {
+      next: {
+        revalidate: 60,
+      },
+    }
+  );
+
+  const contentType = response.headers.get("content-type") || "";
 
   if (!response.ok) {
-    throw new Error('Failed to fetch companies from WordPress');
+    const text = await response.text();
+
+    throw new Error(
+      `WordPress API error ${response.status}: ${text.slice(0, 200)}`
+    );
+  }
+
+  if (!contentType.includes("application/json")) {
+    const text = await response.text();
+
+    throw new Error(
+      `WordPress API returned ${contentType} instead of JSON: ${text.slice(
+        0,
+        200
+      )}`
+    );
   }
 
   return response.json();
