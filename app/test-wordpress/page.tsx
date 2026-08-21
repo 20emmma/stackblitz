@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function WordPressTestPage() {
   const [status, setStatus] = useState("Testing...");
-  const [data, setData] = useState<unknown>(null);
+  const [data, setData] = useState<any>(null);
 
   useEffect(() => {
     fetch(
@@ -12,9 +12,7 @@ export default function WordPressTestPage() {
     )
       .then(async (response) => {
         if (!response.ok) {
-          throw new Error(
-            `HTTP ${response.status}`
-          );
+          throw new Error(`HTTP ${response.status}`);
         }
 
         return response.json();
@@ -45,4 +43,4 @@ export default function WordPressTestPage() {
       )}
     </main>
   );
-      }
+}
